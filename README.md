@@ -11,15 +11,25 @@
 from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
 **pci** = [Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html) \
 **rnti** = [Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)(UE identifier) \
-**cqi** = [Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html) reported by the UE 1-15. Different in modulation
+**cqi** = [Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html) reported by the UE 1-15. Main focus on different modulation \
+
+**ri** = 
+
+**mcs** = [Modulation and Coding Scheme](https://www.sharetechnote.com/html/5G/5G_MCS_TBS_CodeRate.html) from 0-28. There are three tables.
+**brate** = Bitrate (bit/sec)
+**ok** = Number of packet successfully sent
+**nok** = Number of packet dropped
+**(%)** = % of packets dropped
+
+**bsr** = Buffer status report - data waiting to be transmitted as reported by the UE (bytes)
 
 
 ### [CQI table](https://www.sharetechnote.com/html/5G/5G_CSI_Report.html)
 38.214 - Table 5.2.2.1-3: 4-bit CQI Table 2 \ 
 support 256 QAM - Target transport block error rate not exceed 0.1
-| CQI index | modulation | efficiency |
-|---|---|---|
-| 0 | code rate x 1024 | out of range |
+| CQI index | code rate x 1024 | modulation | efficiency |
+|---|---|---|---|
+| 0 |  | out of range |
 | 1 | 78 | QPSK | 0.1523 |
 | 2 | 193 | QPSK | 0.3770 |
 | 3 | 449 | QPSK | 0.8770 |
