@@ -23,26 +23,28 @@ from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/con
 
 **bsr** = Buffer status report - data waiting to be transmitted as reported by the UE (bytes)
 
+<details open>
+  <summary>CQI table</summary>
 
-### [CQI table](https://www.sharetechnote.com/html/5G/5G_CSI_Report.html)
-38.214 - Table 5.2.2.1-3: 4-bit CQI Table 2 \ 
-support 256 QAM - Target transport block error rate not exceed 0.1
-| CQI index | code rate x 1024 | modulation | efficiency |
-|---|---|---|---|
-| 0 |  | out of range |
-| 1 | 78 | QPSK | 0.1523 |
-| 2 | 193 | QPSK | 0.3770 |
-| 3 | 449 | QPSK | 0.8770 |
-| 4 | 378 | 16QAM | 1.4766 |
-| 5 | 490 | 16QAM | 1.9141 |
-| 6 | 616 | 16QAM | 2.4063 |
-| 7 | 466 | 64QAM | 2.7305 |
-| 8 | 567 | 64QAM | 3.3223 |
-| 9 | 666 | 64QAM | 3.9023 |
-| 10 | 772 | 64QAM | 4.5234 |
-| 11 | 873 | 64QAM | 5.1152 |
-| 12 | 711 | 256QAM | 5.5547 |
-| 13 | 797 | 256QAM | 6.2266 |
-| 14 | 885 | 256QAM | 6.9141 |
-| 15 | 948 | 256QAM | 7.4063 |
-
+  ### [CQI table](https://www.sharetechnote.com/html/5G/5G_CSI_Report.html)
+  38.214 - Table 5.2.2.1-3: 4-bit CQI Table 2 \ 
+  support 256 QAM - Target transport block error rate not exceed 0.1
+  | CQI index | code rate x 1024 | modulation | efficiency |
+  |---|---|---|---|
+  | 0 |  | out of range |
+  | 1 | 78 | QPSK | 0.1523 |
+  | 2 | 193 | QPSK | 0.3770 |
+  | 3 | 449 | QPSK | 0.8770 |
+  | 4 | 378 | 16QAM | 1.4766 |
+  | 5 | 490 | 16QAM | 1.9141 |
+  | 6 | 616 | 16QAM | 2.4063 |
+  | 7 | 466 | 64QAM | 2.7305 |
+  | 8 | 567 | 64QAM | 3.3223 |
+  | 9 | 666 | 64QAM | 3.9023 |
+  | 10 | 772 | 64QAM | 4.5234 |
+  | 11 | 873 | 64QAM | 5.1152 |
+  | 12 | 711 | 256QAM | 5.5547 |
+  | 13 | 797 | 256QAM | 6.2266 |
+  | 14 | 885 | 256QAM | 6.9141 |
+  | 15 | 948 | 256QAM | 7.4063 |
+</details>
