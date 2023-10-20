@@ -21,9 +21,12 @@ from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/con
 **nok** = Number of packet dropped
 **(%)** = % of packets dropped
 
-**bsr** = Buffer status report - data waiting to be transmitted as reported by the UE (bytes)
+**bsr** = [Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) data waiting to be transmitted as reported by the UE (bytes)
 
-<details open>
+
+
+
+<details>
   <summary>CQI table</summary>
 
   ### [CQI table](https://www.sharetechnote.com/html/5G/5G_CSI_Report.html)
