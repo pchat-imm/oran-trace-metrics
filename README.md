@@ -23,8 +23,30 @@ from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/con
 
 **bsr** = [Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) data waiting to be transmitted as reported by the UE (bytes)
 
+dl_bs =? (here)
+pusch = ? (here)
 
-
+## UE
+from: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref
+```
+---------Signal-----------|-----------------DL-----------------|-----------UL-----------
+rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  brate  bler
+ nr    1    39    0 -6.0u |  26   65   1.0    16k    0%    0.0 |  26    0.0   109k    0%
+ nr    1    39    0 -4.0u |  26   67   1.4    19k    0%    0.0 |  26    0.0   112k    0%
+ nr    1    39    0  415n |  27   68   2.5    17k    0%    0.0 |  26     90   104k    0%
+ nr    1    39    0 -2.0u |  27   66   2.3    18k    0%    0.0 |  26     90   111k    0%
+```
+(1mm - here - not sure if everything cover, in-order, with link embeded)
+**rat** = component carrier, either: lte, nr
+**rsrp** = Reference Signal Receive Power (dBm)
+**pl** = path loss (dB)
+**cfo** = Carrier Frequency Offset (Hz)
+**mcs** = modulation and coding scheme (0-28)
+**snr** = signal to noise ratio (dB)
+**brate** = bit rate (bits/sec)
+**bler** = block error rate
+**ta_us** = timing advance (microsec)  === (1mm - here) https://www.sharetechnote.com/html/Handbook_LTE_TimingAdvance.html
+**buff** = uplink buffer status
 
 <details>
   <summary>CQI table</summary>
