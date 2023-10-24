@@ -1,4 +1,4 @@
-# oran-trace-metrics
+ 
 ## gNB
 ```
            -----------------DL-----------------------|------------------UL--------------------
@@ -8,23 +8,32 @@
    1 4601   15   1   27    17k   20    0   0%      0 |  65.5   26   112k   42    0   0%      0
    1 4601   15   1   27    17k   20    1   4%      0 |  65.5   27   107k   40    0   0%      0
 ```
-from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
-**pci** = [Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html) \
-**rnti** = [Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)(UE identifier) \
-**cqi** = [Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html) reported by the UE 1-15. Main focus on different modulation \
+description from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
+----DL---- \        
+| metrics | full name | expected value | note |
+|---|---|---|---|
+|**pci**|[Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html)| number|identification of a cell physical layer, determined bt PSS (Primary Sync Signal) and SSS (Secondary Sync Signal) |
+|**rnti**|[Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)| 0000-FFFF |UE identifier|
+|**cqi**|[Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html)|1 (poor) - 15 (best), 0 is out of range|reported by the UE. Main focus on different modulation |
+|**ri**| ????? |
+|**mcs**|[Modulation and Coding Scheme](https://www.sharetechnote.com/html/5G/5G_MCS_TBS_CodeRate.html)| 0 (low target code rate) - 28 (high target code rate) | There are three tables |
+|**brate**|Bitrate| bit/sec |
+|**ok**|Number of packet successfully sent| no. of pkg |
+|**nok**|Number of packet dropped| no. of pkg |
+|**(%)**|% of packets dropped| % |
+|**dl_bs**| ????? |
 
-**ri** = 
+----UL---- \
+| metrics | full name | expected value | note |
+|---|---|---|---|
+|**pusch**| ????? |
+|**mcs**|[Modulation and Coding Scheme](https://www.sharetechnote.com/html/5G/5G_MCS_TBS_CodeRate.html)| 0 (low target code rate) - 28 (high target code rate) | There are three tables |
+|**brate**|Bitrate | bit/sec |
+|**ok**|Number of packet successfully sent| no. of pkg |
+|**nok**|Number of packet dropped| no. of pkg |
+|**(%)**|% of packets dropped| % |
+|**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE|
 
-**mcs** = [Modulation and Coding Scheme](https://www.sharetechnote.com/html/5G/5G_MCS_TBS_CodeRate.html) from 0-28. There are three tables.
-**brate** = Bitrate (bit/sec)
-**ok** = Number of packet successfully sent
-**nok** = Number of packet dropped
-**(%)** = % of packets dropped
-
-**bsr** = [Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) data waiting to be transmitted as reported by the UE (bytes)
-
-dl_bs =? (here)
-pusch = ? (here)
 
 ## UE
 from: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref
@@ -36,17 +45,31 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
  nr    1    39    0  415n |  27   68   2.5    17k    0%    0.0 |  26     90   104k    0%
  nr    1    39    0 -2.0u |  27   66   2.3    18k    0%    0.0 |  26     90   111k    0%
 ```
-(1mm - here - not sure if everything cover, in-order, with link embeded)
-**rat** = component carrier, either: lte, nr
-**rsrp** = Reference Signal Receive Power (dBm)
-**pl** = path loss (dB)
-**cfo** = Carrier Frequency Offset (Hz)
-**mcs** = modulation and coding scheme (0-28)
-**snr** = signal to noise ratio (dB)
-**brate** = bit rate (bits/sec)
-**bler** = block error rate
-**ta_us** = timing advance (microsec)  === (1mm - here) https://www.sharetechnote.com/html/Handbook_LTE_TimingAdvance.html
-**buff** = uplink buffer status
+----Signal----\
+| metrics | full name | expected value | note |
+|---|---|---|---|
+|**rat** |component carrier|lte or nr|
+|**pci**|[Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html) |number|
+|**rsrp** |Reference Signal Receive Power | dBm |
+
+
+**rat** = component carrier, either: lte, nr \
+**pci** = [Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html) \
+**rsrp** = Reference Signal Receive Power (dBm) \
+**pl** = path loss (dB) \
+**cfo** = Carrier Frequency Offset (Hz) - mismatch carrier frequency between transmitted signal and recieved signal \
+----DL----\
+**mcs** = modulation and coding scheme (0-28) \
+**snr** = (signal to noise ratio (dB))[https://www.sharetechnote.com/html/RF_Handbook_SNR.html] \
+**iter** = Average number of turbo decider iterations \
+**brate** = bit rate (bits/sec) \
+**bler** = block error rate (rate of transmitted block/error recieved block) \
+**ta_us** = (timing advance (microsec))[https://www.sharetechnote.com/html/Handbook_LTE_TimingAdvance.html] \
+----UL----\
+**mcs** = modulation and coding scheme (0-28) \
+**buff** = [uplink buffer status](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) - data waiting to be transmitted (byte) \
+**brate** = bit rate (bits/sec) \
+**bler** = block error rate (rate of transmitted block/error recieved block) \
 
 <details>
   <summary>CQI table</summary>
