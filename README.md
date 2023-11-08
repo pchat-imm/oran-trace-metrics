@@ -9,7 +9,7 @@
    1 4601   15   1   27    17k   20    1   4%      0 |  65.5   27   107k   40    0   0%      0
 ```
 description from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
-----DL---- \        
+### ----DL----     
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**pci**|[Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html)| number|identification of a cell physical layer, determined bt PSS (Primary Sync Signal) and SSS (Secondary Sync Signal) |
@@ -23,7 +23,7 @@ description from: https://docs.srsran.com/projects/project/en/latest/user_manual
 |**(%)**|% of packets dropped| % |
 |**dl_bs**| ????? |
 
-----UL---- \
+### ----UL---- 
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**pusch**| ????? |
@@ -45,31 +45,32 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
  nr    1    39    0  415n |  27   68   2.5    17k    0%    0.0 |  26     90   104k    0%
  nr    1    39    0 -2.0u |  27   66   2.3    18k    0%    0.0 |  26     90   111k    0%
 ```
-----Signal----\
+### ----Signal----
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**rat** |component carrier|lte or nr|
 |**pci**|[Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html) |number|
 |**rsrp** |Reference Signal Receive Power | dBm |
+|**pl**| path loss | dB |
+|**cfo**| Carrier Frequency Offset | Hz | mismatch carrier frequency between transmitted signal and recieved signal |
 
+### ----DL----
+| metrics | full name | expected value | note |
+|---|---|---|---|
+|**mcs**| modulation and coding scheme | (0-28) |
+|**snr**| [signal to noise ratio](https://www.sharetechnote.com/html/RF_Handbook_SNR.html) | dB |
+|**iter**| | Average number of turbo decider iterations |
+|**brate**| bit rate | bits/sec |
+|**bler**| block error rate | | rate of transmitted block/error recieved block) |
+|**ta_us**| [timing advance](https://www.sharetechnote.com/html/Handbook_LTE_TimingAdvance.html) | microsec |
 
-**rat** = component carrier, either: lte, nr \
-**pci** = [Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html) \
-**rsrp** = Reference Signal Receive Power (dBm) \
-**pl** = path loss (dB) \
-**cfo** = Carrier Frequency Offset (Hz) - mismatch carrier frequency between transmitted signal and recieved signal \
-----DL----\
-**mcs** = modulation and coding scheme (0-28) \
-**snr** = (signal to noise ratio (dB))[https://www.sharetechnote.com/html/RF_Handbook_SNR.html] \
-**iter** = Average number of turbo decider iterations \
-**brate** = bit rate (bits/sec) \
-**bler** = block error rate (rate of transmitted block/error recieved block) \
-**ta_us** = (timing advance (microsec))[https://www.sharetechnote.com/html/Handbook_LTE_TimingAdvance.html] \
-----UL----\
-**mcs** = modulation and coding scheme (0-28) \
-**buff** = [uplink buffer status](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) - data waiting to be transmitted (byte) \
-**brate** = bit rate (bits/sec) \
-**bler** = block error rate (rate of transmitted block/error recieved block) \
+### ----UL----
+| metrics | full name | expected value | note |
+|---|---|---|---|
+|**mcs**| modulation and coding scheme | 0-28 |
+|**buff**| [uplink buffer status](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) | byte | data waiting to be transmitted |
+|**brate**| bit rate | bits/sec|
+|**bler**| block error rate | | rate of transmitted block/error recieved block |
 
 <details>
   <summary>CQI table</summary>
