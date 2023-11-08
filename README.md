@@ -1,3 +1,14 @@
+| metrics | full name | expected value | note |
+|---|---|---|---|
+|**pci**|[Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html)| number|identification of a cell physical layer, determined bt PSS (Primary Sync Signal) and SSS (Secondary Sync Signal) |
+|**mcs**|[Modulation and Coding Scheme](https://www.sharetechnote.com/html/5G/5G_MCS_TBS_CodeRate.html)| 0 (low target code rate) - 28 (high target code rate) | There are three tables |
+|**brate**|Bitrate| bit/sec |
+|**rsrp** |Reference Signal Receive Power | dBm |
+|**snr**| [signal to noise ratio](https://www.sharetechnote.com/html/RF_Handbook_SNR.html) | dB |
+|**ok**|Number of packet successfully sent| no. of pkg |
+|**nok**|Number of packet dropped| no. of pkg |
+|**(%)**|% of packets dropped| % |
+
  
 ## gNB
 ```
@@ -9,29 +20,19 @@
    1 4601   15   1   27    17k   20    1   4%      0 |  65.5   27   107k   40    0   0%      0
 ```
 description from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
+
 ### ----DL----     
 | metrics | full name | expected value | note |
 |---|---|---|---|
-|**pci**|[Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html)| number|identification of a cell physical layer, determined bt PSS (Primary Sync Signal) and SSS (Secondary Sync Signal) |
 |**rnti**|[Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)| 0000-FFFF |UE identifier|
 |**cqi**|[Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html)|1 (poor) - 15 (best), 0 is out of range|reported by the UE. Main focus on different modulation |
 |**ri**| ????? |
-|**mcs**|[Modulation and Coding Scheme](https://www.sharetechnote.com/html/5G/5G_MCS_TBS_CodeRate.html)| 0 (low target code rate) - 28 (high target code rate) | There are three tables |
-|**brate**|Bitrate| bit/sec |
-|**ok**|Number of packet successfully sent| no. of pkg |
-|**nok**|Number of packet dropped| no. of pkg |
-|**(%)**|% of packets dropped| % |
 |**dl_bs**| ????? |
 
 ### ----UL---- 
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**pusch**| ????? |
-|**mcs**|[Modulation and Coding Scheme](https://www.sharetechnote.com/html/5G/5G_MCS_TBS_CodeRate.html)| 0 (low target code rate) - 28 (high target code rate) | There are three tables |
-|**brate**|Bitrate | bit/sec |
-|**ok**|Number of packet successfully sent| no. of pkg |
-|**nok**|Number of packet dropped| no. of pkg |
-|**(%)**|% of packets dropped| % |
 |**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE|
 
 
@@ -49,28 +50,21 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**rat** |component carrier|lte or nr|
-|**pci**|[Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html) |number|
-|**rsrp** |Reference Signal Receive Power | dBm |
 |**pl**| path loss | dB |
 |**cfo**| Carrier Frequency Offset | Hz | mismatch carrier frequency between transmitted signal and recieved signal |
 
 ### ----DL----
 | metrics | full name | expected value | note |
 |---|---|---|---|
-|**mcs**| modulation and coding scheme | (0-28) |
-|**snr**| [signal to noise ratio](https://www.sharetechnote.com/html/RF_Handbook_SNR.html) | dB |
 |**iter**| | Average number of turbo decider iterations |
-|**brate**| bit rate | bits/sec |
 |**bler**| block error rate | | rate of transmitted block/error recieved block) |
 |**ta_us**| [timing advance](https://www.sharetechnote.com/html/Handbook_LTE_TimingAdvance.html) | microsec |
 
 ### ----UL----
 | metrics | full name | expected value | note |
 |---|---|---|---|
-|**mcs**| modulation and coding scheme | 0-28 |
 |**buff**| [uplink buffer status](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) | byte | data waiting to be transmitted |
-|**brate**| bit rate | bits/sec|
-|**bler**| block error rate | | rate of transmitted block/error recieved block |
+
 
 <details>
   <summary>CQI table</summary>
