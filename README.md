@@ -1,3 +1,7 @@
+### General metrics showing 
+description from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
+and: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsenb/source/6_enb_commandref.html \
+
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**pci**|[Physical Cell Identifier](https://www.sharetechnote.com/html/Handbook_LTE_PCI.html)| number|identification of a cell physical layer, determined bt PSS (Primary Sync Signal) and SSS (Secondary Sync Signal) |
@@ -19,22 +23,20 @@
    1 4601   15   1   27    17k   20    0   0%      0 |  65.5   26   112k   42    0   0%      0
    1 4601   15   1   27    17k   20    1   4%      0 |  65.5   27   107k   40    0   0%      0
 ```
-description from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
 
-### ----DL----     
+### ----DL---- (gNB -> UE)
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**rnti**|[Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)| 0000-FFFF |UE identifier|
 |**cqi**|[Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html)|1 (poor) - 15 (best), 0 is out of range|reported by the UE. Main focus on different modulation |
-|**ri**| ????? |
+|**ri**| [rank indicator](https://www.sharetechnote.com/html/Handbook_LTE_RI.html) | 1 (worst performance) or 2 (best performance) | reported from the UE showing how well multiple antenna work, 2 means no correlation/interference between the antenna, 1 means signal from two Tx Antenna perceived by UE to be like single signal from single antenna |
 |**dl_bs**| ????? |
 
-### ----UL---- 
+### ----UL---- (UE -> gNB)
 | metrics | full name | expected value | note |
 |---|---|---|---|
-|**pusch**| ????? |
-|**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE|
-
+|**pusch**| PUSCH SINR (Signal-to-Interference-plus-Noise Ratio) | dB |
+|**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE |
 
 ## UE
 from: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref
