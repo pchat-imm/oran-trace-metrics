@@ -1,6 +1,7 @@
 ### General metrics showing 
-description from: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
+description gNB: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
 and: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsenb/source/6_enb_commandref.html \
+description UE: from: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref \
 
 | metrics | full name | expected value | note |
 |---|---|---|---|
@@ -39,7 +40,6 @@ and: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsenb/sou
 |**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE |
 
 ## UE
-from: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref
 ```
 ---------Signal-----------|-----------------DL-----------------|-----------UL-----------
 rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  brate  bler
