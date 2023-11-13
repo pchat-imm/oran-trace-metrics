@@ -1,7 +1,7 @@
 ### General metrics showing 
 description gNB: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
 and: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsenb/source/6_enb_commandref.html \
-description UE: from: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref \
+description UE: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref 
 
 | metrics | full name | expected value | note |
 |---|---|---|---|
