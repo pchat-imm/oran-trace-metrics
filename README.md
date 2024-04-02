@@ -3,6 +3,7 @@ description gNB: https://docs.srsran.com/projects/project/en/latest/user_manuals
 and: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsenb/source/6_enb_commandref.html \
 description UE: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref 
 wireshark: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/outputs.html
+grafana: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/grafana_gui.html
 
 to get log files check
 ```
@@ -120,3 +121,28 @@ following this link: https://docs.srsran.com/projects/project/en/latest/user_man
 - see result in wireshark
 ![Screenshot from 2024-04-02 13-47-29](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/71662f1a-3abb-4bda-95b3-e088f00b781c)
 
+
+## Grafana GUI
+following this link: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/grafana_gui.html
+
+- add metrics in gnb config file
+```
+metrics:
+    enable_json_metrics: true       # Enable reporting metrics in JSON format
+    addr: 172.19.1.4                # Metrics-server IP
+    port: 55555                     # Metrics-server Port
+```
+- launching GUI
+```
+sudo docker compose -f docker/docker-compose.yml up grafana
+```
+- the following should show
+```
+Creating network "docker_ran" with the default driver
+Starting metrics_server ...
+Starting metrics_server ... done
+Creating grafana        ... done
+Attaching to grafana
+```
+- go to `http://localhost:3300/` in your browser
+![Screenshot from 2024-04-02 15-10-59](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d89b56eb-5bce-48d3-9dbc-3c70a0923b9e)
