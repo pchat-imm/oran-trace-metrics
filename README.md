@@ -2,6 +2,18 @@
 description gNB: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
 and: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsenb/source/6_enb_commandref.html \
 description UE: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref 
+wireshark: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/outputs.html
+
+to get log files check
+```
+# gnb
+>> /tmp/gnb.log
+>> /tmp/gnb_mac.pcap
+
+# ue
+>> /tmp/ue.log
+>> /tmp/ue_metrics.csv
+```
 
 | metrics | full name | expected value | note |
 |---|---|---|---|
@@ -93,3 +105,18 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
   | 14 | 885 | 256QAM | 6.9141 |
   | 15 | 948 | 256QAM | 7.4063 |
 </details>
+
+## Wireshark
+following this link: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/outputs.html
+
+- add entry of DLT_User with specified protocol (edit->preference->protocols->DLT_user)
+![Screenshot from 2024-04-02 13-55-27](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d1b4341e-658f-46ec-b54f-8e5a82c43b86)
+
+1. MAC PCAP
+- enable on gnb config
+![Screenshot from 2024-04-02 14-01-53](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/3737f4d7-9441-427f-b04a-4e97c5dc0129)
+- enable MAC_NR protocol (analyze->enabled protocols->MAC_NR-> enable mac_nr_udp)
+- edit preference of the protocol (edit->preference->protocols->MAC_NR => enable both "Attemtps to...", set LCID->DRB mapping to "From configuration protocol"
+- see result in wireshark
+![Screenshot from 2024-04-02 13-47-29](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/71662f1a-3abb-4bda-95b3-e088f00b781c)
+
