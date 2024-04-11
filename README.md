@@ -146,3 +146,9 @@ Attaching to grafana
 ```
 - go to `http://localhost:3300/` in your browser
 ![Screenshot from 2024-04-02 15-10-59](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d89b56eb-5bce-48d3-9dbc-3c70a0923b9e)
+
+## htop
+```
+htop
+echo q | htop | aha --black --line-fix > htop.html
+```
