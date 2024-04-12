@@ -152,3 +152,17 @@ Attaching to grafana
 htop
 echo q | htop | aha --black --line-fix > htop.html
 ```
+Could show usage of single or multiple core operating. 
+![Screenshot 2024-04-12 at 17-19-17 stdin](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/bc967d29-51c1-4a7a-99a9-2834aa6fec96)
+
+Can show snippet of single core 100% usage, but it should show other core work as well. However, if it shows result like below, the gnb trace can return
+`Late: 6000; Underflow: 0; Overflow: 0;
+Error: exceeded maximum number of timed out transmissions.`
+![321213105-c5a0a55d-46e9-47dd-9496-079b12a8c65e](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/43cc484d-9f41-47bd-964a-f27988477422)
+
+For this problem, can try to assign it to use other core
+```
+sudo taskset -c 0-7 ./gnb -c ./your_config_file
+```
+However, if the issue persist, advice to **reinstall Ubuntu22.04, then reinstall srsRAN_Project again.**
+
