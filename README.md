@@ -26,16 +26,19 @@ to get log files check
 |**ok**|Number of packet successfully sent| no. of pkg |
 |**nok**|Number of packet dropped| no. of pkg |
 |**(%)**|% of packets dropped| % |
+| **ta** | [Timing advanced](https://www.sharetechnote.com/html/5G/5G_TimingAdvance.html) | ms |
 
  
 ## gNB
 ```
-           -----------------DL-----------------------|------------------UL--------------------
- pci rnti  cqi  ri  mcs  brate   ok  nok  (%)  dl_bs | pusch  mcs  brate   ok  nok  (%)    bsr
-   1 4601   15   1   27    17k   20    0   0%      0 |  65.5   27   107k   40    0   0%      0
-   1 4601   15   1   27    19k   22    0   0%      0 |  65.5   27   112k   42    0   0%      0
-   1 4601   15   1   27    17k   20    0   0%      0 |  65.5   26   112k   42    0   0%      0
-   1 4601   15   1   27    17k   20    1   4%      0 |  65.5   27   107k   40    0   0%      0
+          |--------------------DL---------------------|-------------------UL------------------------------
+ pci rnti | cqi  ri  mcs  brate   ok  nok  (%)  dl_bs | pusch  mcs  brate   ok  nok  (%)    bsr    ta  phr
+   1 4604 |  15   1   28   3.3M  134    0   0%      0 |  27.9   28   126k   25    1   3%      0   0us   28
+   1 4604 |  15   1   28   857k   57    0   0%      0 |  28.0   28    95k   19    0   0%      0   0us   28
+   1 4604 |  15   1   28   324k   43    0   0%      0 |  25.8   28   169k   24    4  14%      0   0us   26
+   1 4604 |  15   1   27   1.7M  134    2   1%      0 |  28.2   28   172k   39    0   0%      0   n/a   28
+   1 4604 |  15   1   28    14M  551    0   0%      0 |  27.4   28   217k   47    0   0%      0   0us   28
+   1 4604 |  15   1   28   6.7M  285    0   0%      0 |  28.7   28   187k   38    0   0%      0   n/a   28
 ```
 
 ### ----DL---- (gNB -> UE)
@@ -43,14 +46,15 @@ to get log files check
 |---|---|---|---|
 |**rnti**|[Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)| 0000-FFFF |UE identifier|
 |**cqi**|[Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html)|1 (poor) - 15 (best), 0 is out of range|reported by the UE. Main focus on different modulation |
-|**ri**| [rank indicator](https://www.sharetechnote.com/html/Handbook_LTE_RI.html) | 1 (worst performance) or 2 (best performance) | reported from the UE showing how well multiple antenna work, 2 means no correlation/interference between the antenna, 1 means signal from two Tx Antenna perceived by UE to be like single signal from single antenna |
-|**dl_bs**| ????? |
+|**ri**| [rank indicator](https://www.sharetechnote.com/html/Handbook_LTE_RI.html) | 1 (worst performance) or 2 (best performance) | reported from the UE showing how well multiple antenna work, 2 means no correlation/interference between the antenna, 1 means signal from two Tx Antenna perceived by UE to be like single signal from single antenna | 
+|**dl_bs**| downlink buffer status | bytes | data waiting to be transmitted as reported by the gNB |
 
 ### ----UL---- (UE -> gNB)
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**pusch**| PUSCH SINR (Signal-to-Interference-plus-Noise Ratio) | dB |
 |**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE |
+| **phr** | [Power headroom](https://www.sharetechnote.com/html/Handbook_LTE_PHR.html) | dB [-23, 40] | how much transmission power left for a UE to use in addition to the power being used by current transmission |
 
 ## UE
 ```
@@ -73,7 +77,6 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
 |---|---|---|---|
 |**iter**| | Average number of turbo decider iterations |
 |**bler**| block error rate | | rate of transmitted block/error recieved block) |
-|**ta_us**| [timing advance](https://www.sharetechnote.com/html/Handbook_LTE_TimingAdvance.html) | microsec |
 
 ### ----UL----
 | metrics | full name | expected value | note |
