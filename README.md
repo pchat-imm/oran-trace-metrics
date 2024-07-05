@@ -1,26 +1,31 @@
-### General metrics showing 
+**Description**: to understand output from srsRAN and other <br />
+**Tutorial**: 
 - description gNB: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/console_ref.html \
 - and: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsenb/source/6_enb_commandref.html \
 - description UE: https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/6_ue_commandref.html#ue-commandref 
 - wireshark: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/outputs.html
 - grafana: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/grafana_gui.html
 
+
+#### Table of Contents
+
 <!-- toc -->
 
-- [1. gNB](#1-gnb)
-  * [1.1 DL (gNB -> UE)](#11-dl-gnb---ue)
-  * [1.2 UL (UE -> gNB)](#12-ul-ue---gnb)
-- [2. UE](#2-ue)
-  * [2.1. Signal](#21-signal)
-  * [2.2. DL](#22-dl)
-  * [2.3. UL](#23-ul)
-  * [CQI table](#cqi-table)
-- [3. Wireshark](#3-wireshark)
-- [4. Grafana GUI](#4-grafana-gui)
-- [5. htop](#5-htop)
+- [1. Trace File](#1-trace-file)
+- [1.1. gNB](#11-gnb)
+  * [DL (gNB -> UE)](#dl-gnb---ue)
+  * [UL (UE -> gNB)](#ul-ue---gnb)
+- [1.2. UE](#12-ue)
+  * [Signal](#signal)
+  * [DL](#dl)
+  * [UL](#ul)
+- [2. Wireshark](#2-wireshark)
+- [3. Grafana GUI](#3-grafana-gui)
+- [4. htop](#4-htop)
 
 <!-- tocstop -->
 
+### 1. Trace File
 to get log files check
 ```
 ## gnb
@@ -44,10 +49,8 @@ to get log files check
 |**(%)**|% of packets dropped| % |
 | **ta** | [Timing advanced](https://www.sharetechnote.com/html/5G/5G_TimingAdvance.html) | ms |
 
-
-
  
-## 1. gNB
+### 1.1. gNB
 ```
           |--------------------DL---------------------|-------------------UL------------------------------
  pci rnti | cqi  ri  mcs  brate   ok  nok  (%)  dl_bs | pusch  mcs  brate   ok  nok  (%)    bsr    ta  phr
@@ -59,7 +62,7 @@ to get log files check
    1 4604 |  15   1   28   6.7M  285    0   0%      0 |  28.7   28   187k   38    0   0%      0   n/a   28
 ```
 
-### 1.1 DL (gNB -> UE)
+#### DL (gNB -> UE)
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**rnti**|[Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)| 0000-FFFF |UE identifier|
@@ -67,14 +70,14 @@ to get log files check
 |**ri**| [rank indicator](https://www.sharetechnote.com/html/Handbook_LTE_RI.html) | 1 (worst performance) or 2 (best performance) | reported from the UE showing how well multiple antenna work, 2 means no correlation/interference between the antenna, 1 means signal from two Tx Antenna perceived by UE to be like single signal from single antenna | 
 |**dl_bs**| downlink buffer status | bytes | data waiting to be transmitted as reported by the gNB |
 
-### 1.2 UL (UE -> gNB)
+#### UL (UE -> gNB)
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**pusch**| PUSCH SINR (Signal-to-Interference-plus-Noise Ratio) | dB |
 |**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE |
 | **phr** | [Power headroom](https://www.sharetechnote.com/html/Handbook_LTE_PHR.html) | dB [-23, 40] | how much transmission power left for a UE to use in addition to the power being used by current transmission |
 
-## 2. UE
+### 1.2. UE
 ```
 ---------Signal-----------|-----------------DL-----------------|-----------UL-----------
 rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  brate  bler
@@ -83,20 +86,20 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
  nr    1    39    0  415n |  27   68   2.5    17k    0%    0.0 |  26     90   104k    0%
  nr    1    39    0 -2.0u |  27   66   2.3    18k    0%    0.0 |  26     90   111k    0%
 ```
-### 2.1. Signal
+#### Signal
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**rat** |component carrier|lte or nr|
 |**pl**| path loss | dB |
 |**cfo**| Carrier Frequency Offset | Hz | mismatch carrier frequency between transmitted signal and recieved signal |
 
-### 2.2. DL
+#### DL
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**iter**| | Average number of turbo decider iterations |
 |**bler**| block error rate | | rate of transmitted block/error recieved block) |
 
-### 2.3. UL
+#### UL
 | metrics | full name | expected value | note |
 |---|---|---|---|
 |**buff**| [uplink buffer status](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) | byte | data waiting to be transmitted |
@@ -105,7 +108,8 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
 <details>
   <summary>CQI table</summary>
 
-  ### [CQI table](https://www.sharetechnote.com/html/5G/5G_CSI_Report.html)
+  [CQI table](https://www.sharetechnote.com/html/5G/5G_CSI_Report.html)
+  
   38.214 - Table 5.2.2.1-3: 4-bit CQI Table 2 \ 
   support 256 QAM - Target transport block error rate not exceed 0.1
   | CQI index | code rate x 1024 | modulation | efficiency |
@@ -128,7 +132,7 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
   | 15 | 948 | 256QAM | 7.4063 |
 </details>
 
-## 3. Wireshark
+### 2. Wireshark
 following this link: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/outputs.html
 
 - add entry of DLT_User with specified protocol (edit->preference->protocols->DLT_user)
@@ -143,7 +147,7 @@ following this link: https://docs.srsran.com/projects/project/en/latest/user_man
 ![Screenshot from 2024-04-02 13-47-29](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/71662f1a-3abb-4bda-95b3-e088f00b781c)
 
 
-## 4. Grafana GUI
+### 3. Grafana GUI
 following this link: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/grafana_gui.html
 
 - add metrics in gnb config file
@@ -168,7 +172,7 @@ Attaching to grafana
 - go to `http://localhost:3300/` in your browser
 ![Screenshot from 2024-04-02 15-10-59](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d89b56eb-5bce-48d3-9dbc-3c70a0923b9e)
 
-## 5. htop
+### 4. htop
 ```
 htop
 echo q | htop | aha --black --line-fix > htop.html
