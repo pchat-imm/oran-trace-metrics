@@ -20,6 +20,7 @@
   * [DL](#dl)
   * [UL](#ul)
 - [2. Wireshark](#2-wireshark)
+  * [1. MAC PCAP](#1-mac-pcap)
 - [3. Grafana GUI](#3-grafana-gui)
 - [4. htop](#4-htop)
 
@@ -136,16 +137,26 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
 following this link: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/outputs.html
 
 - add entry of DLT_User with specified protocol (edit->preference->protocols->DLT_user)
+<!--
 ![Screenshot from 2024-04-02 13-55-27](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d1b4341e-658f-46ec-b54f-8e5a82c43b86)
+-->
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d1b4341e-658f-46ec-b54f-8e5a82c43b86" width="80%" height="auto">
 
-1. MAC PCAP
+
+
+#### 1. MAC PCAP
 - enable on gnb config
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/3737f4d7-9441-427f-b04a-4e97c5dc0129" width="60%" height="auto">
+<!--
 ![Screenshot from 2024-04-02 14-01-53](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/3737f4d7-9441-427f-b04a-4e97c5dc0129)
+-->
 - enable MAC_NR protocol (analyze->enabled protocols->MAC_NR-> enable mac_nr_udp)
 - edit preference of the protocol (edit->preference->protocols->MAC_NR => enable both "Attemtps to...", set LCID->DRB mapping to "From configuration protocol"
 - see result in wireshark
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/71662f1a-3abb-4bda-95b3-e088f00b781c">
+<!--
 ![Screenshot from 2024-04-02 13-47-29](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/71662f1a-3abb-4bda-95b3-e088f00b781c)
-
+-->
 
 ### 3. Grafana GUI
 following this link: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/grafana_gui.html
@@ -178,12 +189,19 @@ htop
 echo q | htop | aha --black --line-fix > htop.html
 ```
 Could show usage of single or multiple core operating. 
-![Screenshot 2024-04-12 at 17-19-17 stdin](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/bc967d29-51c1-4a7a-99a9-2834aa6fec96)
 
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/bc967d29-51c1-4a7a-99a9-2834aa6fec96", width="60%" height="auto">
+<!--
+![Screenshot 2024-04-12 at 17-19-17 stdin](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/bc967d29-51c1-4a7a-99a9-2834aa6fec96)
+-->
 Can show snippet of single core 100% usage, but it should show other core work as well. However, if it shows result like below, the gnb trace can return
 `Late: 6000; Underflow: 0; Overflow: 0;
 Error: exceeded maximum number of timed out transmissions.`
+
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/43cc484d-9f41-47bd-964a-f27988477422", width="60%" height="auto">
+<!--
 ![321213105-c5a0a55d-46e9-47dd-9496-079b12a8c65e](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/43cc484d-9f41-47bd-964a-f27988477422)
+-->
 
 For this problem, can try to assign it to use other core
 ```
