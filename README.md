@@ -63,20 +63,16 @@ to get log files check
    1 4604 |  15   1   28   6.7M  285    0   0%      0 |  28.7   28   187k   38    0   0%      0   n/a   28
 ```
 
-#### DL (gNB -> UE)
-| metrics | full name | expected value | note |
-|---|---|---|---|
-|**rnti**|[Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)| 0000-FFFF |UE identifier|
-|**cqi**|[Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html)|1 (poor) - 15 (best), 0 is out of range|reported by the UE. Main focus on different modulation |
-|**ri**| [rank indicator](https://www.sharetechnote.com/html/Handbook_LTE_RI.html) | 1 (worst performance) or 2 (best performance) | reported from the UE showing how well multiple antenna work, 2 means no correlation/interference between the antenna, 1 means signal from two Tx Antenna perceived by UE to be like single signal from single antenna | 
-|**dl_bs**| downlink buffer status | bytes | data waiting to be transmitted as reported by the gNB |
+| # | metrics | full name | expected value | note |
+|---|---------|-----------|----------------|------|
+|DL |**rnti** |[Radio Network Temporary Identifier](https://www.sharetechnote.com/html/5G/5G_RNTI.html)| 0000-FFFF |UE identifier|
+|   |**cqi**  |[Channel Quality Indicator](https://www.sharetechnote.com/html/Handbook_LTE_CQI.html)|1 (poor) - 15 (best), 0 is out of range|reported by the UE. Main focus on different modulation |
+|   |**ri**   | [rank indicator](https://www.sharetechnote.com/html/Handbook_LTE_RI.html) | 1 (worst performance) or 2 (best performance) | reported from the UE showing how well multiple antenna work, 2 means no correlation/interference between the antenna, 1 means signal from two Tx Antenna perceived by UE to be like single signal from single antenna | 
+|   |**dl_bs**| downlink buffer status | bytes | data waiting to be transmitted as reported by the gNB |
+|UL |**pusch**| PUSCH SINR (Signal-to-Interference-plus-Noise Ratio) | dB |
+|   |**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE |
+|   | **phr** | [Power headroom](https://www.sharetechnote.com/html/Handbook_LTE_PHR.html) | dB [-23, 40] | how much transmission power left for a UE to use in addition to the power being used by current transmission |
 
-#### UL (UE -> gNB)
-| metrics | full name | expected value | note |
-|---|---|---|---|
-|**pusch**| PUSCH SINR (Signal-to-Interference-plus-Noise Ratio) | dB |
-|**bsr**|[Buffer status report](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html)| bytes |data waiting to be transmitted as reported by the UE |
-| **phr** | [Power headroom](https://www.sharetechnote.com/html/Handbook_LTE_PHR.html) | dB [-23, 40] | how much transmission power left for a UE to use in addition to the power being used by current transmission |
 
 ### 1.2. UE
 ```
@@ -87,24 +83,15 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
  nr    1    39    0  415n |  27   68   2.5    17k    0%    0.0 |  26     90   104k    0%
  nr    1    39    0 -2.0u |  27   66   2.3    18k    0%    0.0 |  26     90   111k    0%
 ```
-#### Signal
-| metrics | full name | expected value | note |
-|---|---|---|---|
-|**rat** |component carrier|lte or nr|
-|**pl**| path loss | dB |
-|**cfo**| Carrier Frequency Offset | Hz | mismatch carrier frequency between transmitted signal and recieved signal |
 
-#### DL
-| metrics | full name | expected value | note |
-|---|---|---|---|
-|**iter**| | Average number of turbo decider iterations |
-|**bler**| block error rate | | rate of transmitted block/error recieved block) |
-
-#### UL
-| metrics | full name | expected value | note |
-|---|---|---|---|
-|**buff**| [uplink buffer status](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) | byte | data waiting to be transmitted |
-
+| #    | metrics | full name | expected value | note |
+|------|---------|-----------|----------------|------|
+|Signal|**rat**  |component carrier|lte or nr|
+|      |**pl**   | path loss | dB |
+|      |**cfo**  | Carrier Frequency Offset | Hz | mismatch carrier frequency between transmitted signal and recieved signal |
+|DL    |**iter** |           | Average number of turbo decider iterations |
+|      |**bler** | block error rate | | rate of transmitted block/error recieved block) |
+|UL    |**buff**| [uplink buffer status](https://www.sharetechnote.com/html/Handbook_LTE_BSR.html) | byte | data waiting to be transmitted |
 
 <details>
   <summary>CQI table</summary>
@@ -137,26 +124,16 @@ rat  pci  rsrp   pl   cfo | mcs  snr  iter  brate  bler  ta_us | mcs   buff  bra
 following this link: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/outputs.html
 
 - add entry of DLT_User with specified protocol (edit->preference->protocols->DLT_user)
-<!--
-![Screenshot from 2024-04-02 13-55-27](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d1b4341e-658f-46ec-b54f-8e5a82c43b86)
--->
-<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d1b4341e-658f-46ec-b54f-8e5a82c43b86" width="80%" height="auto">
-
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d1b4341e-658f-46ec-b54f-8e5a82c43b86" width="70%" height="auto">
 
 
 #### 1. MAC PCAP
-- enable on gnb config
-<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/3737f4d7-9441-427f-b04a-4e97c5dc0129" width="60%" height="auto">
-<!--
-![Screenshot from 2024-04-02 14-01-53](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/3737f4d7-9441-427f-b04a-4e97c5dc0129)
--->
-- enable MAC_NR protocol (analyze->enabled protocols->MAC_NR-> enable mac_nr_udp)
-- edit preference of the protocol (edit->preference->protocols->MAC_NR => enable both "Attemtps to...", set LCID->DRB mapping to "From configuration protocol"
-- see result in wireshark
+- enable on gnb config  <br /> 
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/3737f4d7-9441-427f-b04a-4e97c5dc0129" width="60%" height="auto"> <br /> 
+- enable MAC_NR protocol (analyze->enabled protocols->MAC_NR-> enable mac_nr_udp) 
+- edit preference of the protocol (edit->preference->protocols->MAC_NR => enable both "Attemtps to...", set LCID->DRB mapping to "From configuration protocol" 
+- see result in wireshark 
 <img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/71662f1a-3abb-4bda-95b3-e088f00b781c">
-<!--
-![Screenshot from 2024-04-02 13-47-29](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/71662f1a-3abb-4bda-95b3-e088f00b781c)
--->
 
 ### 3. Grafana GUI
 following this link: https://docs.srsran.com/projects/project/en/latest/user_manuals/source/grafana_gui.html
@@ -180,8 +157,12 @@ Starting metrics_server ... done
 Creating grafana        ... done
 Attaching to grafana
 ```
-- go to `http://localhost:3300/` in your browser
+- go to `http://localhost:3300/` in your browser <br />
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d89b56eb-5bce-48d3-9dbc-3c70a0923b9e" width="95%" height="auto">
+
+<!--
 ![Screenshot from 2024-04-02 15-10-59](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/d89b56eb-5bce-48d3-9dbc-3c70a0923b9e)
+-->
 
 ### 4. htop
 ```
@@ -190,19 +171,14 @@ echo q | htop | aha --black --line-fix > htop.html
 ```
 Could show usage of single or multiple core operating. 
 
-<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/bc967d29-51c1-4a7a-99a9-2834aa6fec96", width="60%" height="auto">
-<!--
-![Screenshot 2024-04-12 at 17-19-17 stdin](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/bc967d29-51c1-4a7a-99a9-2834aa6fec96)
--->
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/bc967d29-51c1-4a7a-99a9-2834aa6fec96" width="90%" height="auto"> 
+<br />
 Can show snippet of single core 100% usage, but it should show other core work as well. However, if it shows result like below, the gnb trace can return
 `Late: 6000; Underflow: 0; Overflow: 0;
 Error: exceeded maximum number of timed out transmissions.`
 
-<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/43cc484d-9f41-47bd-964a-f27988477422", width="60%" height="auto">
-<!--
-![321213105-c5a0a55d-46e9-47dd-9496-079b12a8c65e](https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/43cc484d-9f41-47bd-964a-f27988477422)
--->
-
+<img src="https://github.com/pchat-imm/oran-trace-metrics/assets/40858099/43cc484d-9f41-47bd-964a-f27988477422" width="85%" height="auto"> <br />
+<br />
 For this problem, can try to assign it to use other core
 ```
 sudo taskset -c 0-7 ./gnb -c ./your_config_file
